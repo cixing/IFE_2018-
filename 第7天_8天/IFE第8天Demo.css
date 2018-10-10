@@ -1,0 +1,94 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+:link {
+   color:white;
+   font-size: 11pt;
+}
+.header{
+    height: 80px;
+    background-color: #333;
+    
+}
+.header h1 {
+    position: relative;
+    color: white;
+    font-size: 20pt;
+    left: 10%;
+    bottom: 3px;
+}
+.header nav {
+    position: relative;
+    left:75%;
+}
+.banner {
+    position: relative;
+    height: 300px;
+    background-color:rgb(102, 187, 51);
+}
+.contain {
+    position: absolute;
+    right: 15%;
+    bottom: 8px;
+    
+}
+.tips {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+.tips .unpick,
+.tips .pick {
+    width: 20px;
+    height: 25px;
+    color: rgb(61, 135, 18);
+    border: 1px grey solid;
+    background-color: rgb(172,202,147);
+    
+    margin: 2px;
+    font-size: 9pt;
+}
+.tips .pick {
+    height: 35px;
+    background-color: white;
+}
+.tips .nummber {
+    margin : 30%;
+}
+.tips .pick .nummber {
+    margin : 75% 30% 30% 30%;
+}
+.navigation {
+    height: 80px;
+    border-bottom: 1px #b2b2b2 solid;
+    position: relative;
+}
+.nav-items {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 10%;
+    bottom: 0px;
+}
+.nav-item {
+    padding: 14px 24px;
+    text-align: center;
+    color: rgb(61, 135, 18);
+    font-size: 11pt;
+    border: 1px #b2b2b2 solid;
+    border-bottom: 1px white;
+    border-radius:  15px 15px 0 0;
+}
+.line {
+    display: flex;
+    flex-direction: row;
+    padding:3px  150px;
+}
+
+.content-item {
+    padding: 60px 80px;
+    margin: 3px;
+    border: 1px #b2b2b2 solid;
+    text-align: center;
+}

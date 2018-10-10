@@ -1,0 +1,48 @@
+<!Doctype html>
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <title>IFE第八天，实现三栏布局，中间自适应，两边固定</title>
+            <style>
+                flex实现：
+                .wrapper{
+                    padding: 15px 20px;
+                    border: 1px dashed #ff6c60;
+                    overflow: hidden;
+                }
+                .left ,
+                .center,
+                .right {
+                    border: 5px solid #ddd;
+                    margin: 5px 10px;
+                    float: left;
+                }
+                .wrapper .left {                    
+                    width: 150px;
+                }
+                .wrapper .center {             
+                    width: calc(100% - 390px);
+                }
+                .wrapper .right {
+                    width: 150px;
+                }
+              
+            </style>
+    </head>
+    <body>
+        <div class = "wrapper">
+            
+            <div class = "left">
+                    左边固定宽度，高度不固定 </br> </br></br></br>高度有可能会很小，也可能很大。
+            </div>
+            <div class = "center">
+                    这里的内容可能比两边高，也可能比两边低。宽度需要自适应。</br>
+                    基本的样式是，两个div相距20px, 左侧div宽 120px
+            </div>
+            <div class = "right">
+                    右边固定宽度，高度不固定 </br> </br></br></br>高度有可能会很小，也可能很大。
+            </div>
+            
+        </div>
+    </body>
+</html>
