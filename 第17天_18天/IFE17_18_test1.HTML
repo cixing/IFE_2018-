@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        function valid(num){
+           if(isNaN(num)||num==""||num===" ") {
+           	return false;
+           }
+           return true;
+        }
+        var add_btn = document.getElementById("add-btn");
+        add_btn.addEventListener("click", function(){
+        	var num1 = document.getElementById("first-number").value;
+            var num2 = document.getElementById("second-number").value;
+            
+            if(valid(num1)&&valid(num2)) {
+        	var result = parseInt(num1) + parseInt(num2);
+        	document.getElementById("result").innerHTML = ""+result;
+        	}
+        	else {
+        		console.log("请输入数字");
+        	}
+            
+        },false);  
+
+
+        var minus_btn = document.getElementById("minus-btn");
+        minus_btn.addEventListener("click", function(){
+        	var num1 = document.getElementById("first-number").value;
+            var num2 = document.getElementById("second-number").value;
+        	if(valid(num1)&&valid(num2)) {
+        	var result = parseInt(num1) - parseInt(num2);
+        	document.getElementById("result").innerHTML = ""+result;
+        	}
+        	else {
+        		console.log("请输入数字");
+        	}
+
+        },false); 
+
+        var times_btn = document.getElementById("times-btn");
+        times_btn.addEventListener("click",function(){
+        	var num1 = document.getElementById("first-number").value;
+            var num2 = document.getElementById("second-number").value;
+        	if(valid(num1)&&valid(num2)) {
+        	var result = parseInt(num1) * parseInt(num2);
+        	document.getElementById("result").innerHTML = ""+result;
+        	}
+        	else {
+        		console.log("请输入数字");
+        	}
+
+        },false); 
+
+        var divide_btn = document.getElementById("divide-btn");
+        divide_btn.addEventListener("click",function(){
+        	var num1 = document.getElementById("first-number").value;
+            var num2 = document.getElementById("second-number").value;
+        	if(valid(num1)&&valid(num2)) {
+                if(parseInt(num2) === 0) {
+                	console.log("除数不能为0");
+                }
+                else {
+        	    var result = parseInt(num1) / parseInt(num2);
+        	    document.getElementById("result").innerHTML = ""+result;
+        	   }
+        	}
+        	else {
+        		console.log("请输入数字");
+        	}
+
+        },false); 
+        </script>
+
+</body>
+</html>

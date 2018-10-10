@@ -1,0 +1,116 @@
+<!Doctype html>
+<html>
+    <head>
+            <meta charset="UTF-8">    
+            <title>IFE 第25-27天_date1</title>
+    </head>
+
+<body>
+    <h1> 当前时间</h1>
+    <p id = "p1"> XX:XX</p>
+    <p id = "p2"> XX:XX</p>
+    <button id = "stopTime">停止时间</button>
+    <script>
+        function getWeek1(date){
+           let result = "";
+           let day = date.getDay();
+           switch(day) {
+               case 0: result = "星期天";
+               break;
+               case 1: result = "星期一";
+               break;
+               case 2: result = "星期二";
+               break;
+               case 3: result = "星期三";
+               break;
+               case 4: result = "星期四";
+               break;
+               case 5: result = "星期五";
+               break;
+               case 6: result = "星期六";
+               break; 
+           }
+           return result;
+        }
+        function getWeek2(date){
+           let result = "";
+           let day = date.getDay();
+           switch(day) {
+               case 0: result = "Sunday";
+               break;
+               case 1: result = "Monday";
+               break;
+               case 2: result = "Tuesday";
+               break;
+               case 3: result = "Wednesday";
+               break;
+               case 4: result = "Thursday";
+               break;
+               case 5: result = "Friday";
+               break;
+               case 6: result = "Saturday";
+               break; 
+           }
+           return result;
+        }
+        function fill(date){
+            let result = "";
+           if(date < 10) {
+             result = "0" + date;
+           }
+           else {
+               result = "" + date;
+           }
+           return result;
+
+        }
+        function AMorPM(hours) {
+            if(hours < 12) {
+                return "AM";
+            }
+            else {
+                return "PM";
+            }
+        }
+        let p1 = document.querySelector("p");
+        let p2 = document.getElementById("p2");
+        let timeBegain = setInterval(function(){
+            let date = new Date();
+            let years = date.getFullYear();
+            let month = date.getMonth()+1;
+            let day = date.getDate();
+            let week1= getWeek1(date);
+            let week2 = getWeek2(date);
+            let hours = date.getHours();
+            let minutes = date.getMinutes();
+            let seconds = date.getSeconds();
+            let time = "";
+            let AorP = AMorPM(hours);
+            function fillAll(){
+                month = fill(month);
+                day = fill(day);
+                hours = fill(hours);
+                minutes = fill(minutes);
+                seconds = fill(seconds);
+            }
+            function unit1() {
+                let result = "";
+                result = years + "年" + month + "月" + day + "日" + week1 +" " + hours + "时" + minutes + "分" + seconds + "秒";
+                return result;
+            }
+            fillAll();
+            function unit2() {
+                let result = "";
+                result = years + "-" + month + "-" + day +" " + week2 + " " + hours +":"+minutes +":" +seconds + AorP;
+                return result;
+            }
+            p1.innerText = unit1();
+            p2.innerText = unit2();
+        }, 1000);
+        let stopTime = document.getElementById("stopTime");
+        stopTime.addEventListener("click", function(){
+            clearInterval(timeBegain);
+        },false);
+    </script>
+</body>
+</html>

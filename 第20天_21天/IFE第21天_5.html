@@ -1,0 +1,43 @@
+<!Doctype html>
+<html>
+<head>
+        <meta charset="UTF-8">    
+        <title>IFE ECMAScript</title>
+        <style>
+            .smile {
+                background-image:url("image/erik.jpg");
+                background-repeat: no-repeat;
+                background-position:0px 0px;
+                width:480px;
+                height:480px;
+                margin:0 auto;
+    }
+
+
+                
+        </style>
+</head>
+<body>
+    <div class = "smile"></div>
+    <button class = "btn">开始给老子笑</button>
+    <script>
+        var erik = document.querySelector(".smile");
+        var btn = document.querySelector(".btn");
+        var tmp;
+        var i = 0;
+        btn.addEventListener("click",function(){
+          tmp = window.setInterval("smile()",100);
+        },false);
+        function smile(){
+            if(i < 17) {
+                erik.style.backgroundPosition =  0+ "px " + i*(-480) +"px"; 
+                i++;
+            }
+            else {
+                clearInterval(tmp);
+                i = 0;
+            }
+        }
+    </script>
+</body>
+</html>

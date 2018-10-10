@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">    
+    <title>IFE ECMAScript</title>
+</head>
+<body>        
+        <input id="name" type="text">    
+        <button id="submit-btn">Submit</button>
+    <script>
+        var submit_btn = document.getElementById("submit-btn");
+        var name_1 = document.getElementById("name");
+        submit_btn.addEventListener("click",function(){
+            var value = document.getElementById("name").value;
+            console.log(value);
+        },false);
+        name_1.addEventListener("keydown",function(e){
+            if(e.keyCode === 13) {
+            var value = document.getElementById("name").value;
+            console.log(value);
+              }
+            else if(e.keyCode === 27) {
+               document.getElementById("name").value = "";  //小心，这里是值传递，取的的是一个对象
+             }
+        },false);
+        
+
+ 
+
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!Doctype html>
+<html>
+    <head>
+            <meta charset="UTF-8">    
+            <title>IFE 第25-27天_date2</title>
+    </head>
+    <body>
+            <div id = "contain">
+            <div style="height:1px;background:red"></div>
+            <select id="year-select">
+                    
+                </select>
+                
+                <select id="month-select">
+                   
+                </select>
+                
+                <select id="day-select">
+                   
+                </select>
+                
+                <select id="hour-select">
+                    
+                   
+                </select>
+                
+                <select id="minite-select">
+                    
+                </select>
+                
+                <select id="second-select">
+                    
+                </select>
+            </div>
+                
+                <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
+                <script>
+                    
+                    let years = document.getElementById("year-select");
+                    let months = document.getElementById("month-select");
+                    let days = document.getElementById("day-select");
+                    let hours = document.getElementById("hour-select");
+                    let minites = document.getElementById("minite-select");
+                    let seconds = document.getElementById("second-select");
+                    function init(){
+                        for(let i = 2001; i < 2033; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            years.appendChild(op);
+                        }
+                        for(let i = 1; i< 13; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            months.appendChild(op);
+                        }
+                       
+                        for(let i = 1; i < 32; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            days.appendChild(op);
+                        }
+
+                        for(let i = 0; i < 24; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            hours.appendChild(op);
+                        }
+
+                        for(let i = 0; i < 60; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            minites.appendChild(op);
+                        }
+
+                        for(let i = 0; i < 60; i++) {
+                            let op = document.createElement("option");
+                            let text = document.createTextNode(i);
+                            op.value = i;
+                            op.appendChild(text);
+                            seconds.appendChild(op);
+                        }
+                    }
+                    function isLeap () {
+                        let years = document.getElementById("year-select").value;
+                        if(years%100 === 0 && years%400 !== 0) {
+                            return false;
+                        }
+                        if(years%4 ===0) {
+                            return true;
+                        }
+                        return false;
+                    }
+                    //毫秒转化为时间
+                    function millTo(mill) {
+                      let days;
+                      let hours;
+                      let minites;
+                      let seconds;
+                      mill = mill/1000;
+                      days = Math.floor(mill/(3600*24));
+                      let tmp = mill - days*3600*24;
+                      hours = Math.floor(tmp/3600);
+                      tmp = tmp - hours*3600;
+                      minites = Math.floor(tmp/60);
+                      seconds = tmp - minites*60;
+                      return [days,hours,minites,seconds];
+                    }
+                    function howmanydays(){
+		            let m = document.querySelector("#month-select").value;
+		            let days = 0;
+		            switch(Number(m)){
+		            	case 4:
+		            	case 6:
+		            	case 9:
+		            	case 11:
+		            	days = 30;
+		            	break;
+		            	case 2:
+		            	if(isLeap()){
+		            		days = 29;
+		            	}else{
+		            		days = 28;
+		            	}
+		            	break;
+		            	default:
+		            	days = 31;
+		            }
+		            return days;
+	             }
+	            //重置日期天数
+	            function selectday(){
+	            	let d = document.querySelector("#day-select");
+	            	let n = howmanydays();
+                    const tmp = d.options.length;
+                    if(n !== tmp) {              //没有这句话，每次点击，option都会被删除然后重建，就会选择不了日期
+                    while (d.firstChild) {
+                      d.removeChild(d.firstChild); //小心别删除不存在的节点，不然会报错
+                    }
+	            	for(let i=1;i<=n;i++){
+	            		let op = document.createElement('option');
+	            		let text = document.createTextNode(i);
+	            		op.appendChild(text);
+	            		op.value = i;
+	            		d.appendChild(op);
+	            	}
+                }
+            }
+                    let div = document.querySelector("#contain");
+                    init();
+
+                    div.addEventListener("change", function(e){
+                        if(e.target && e.target.nodeName.toUpperCase() == "SELECT") {
+                            
+                            let years = document.getElementById("year-select").value;
+                            let months = document.getElementById("month-select").value;
+                            let days = document.getElementById("day-select");
+                            let length = days.options.length;
+                            let hours = document.getElementById("hour-select").value;
+                            let minites = document.getElementById("minite-select").value;
+                            let seconds = document.getElementById("second-select").value;
+                            let arr = [4,6,9,11];
+                            selectday();
+                            days = days.value;
+                            let date = new Date(years,months,days,hours,minites,seconds);
+                            let old_date = new Date(2001,1,1,0,0,0);
+                            let distance = date.getTime() - old_date.getTime();
+                            let time = millTo(distance);
+                            let p = document.querySelector("#result-wrapper");
+                            p.innerText = "现在距离 2001年1月1日星期X 00:00:00 还有 "+ time[0] + "天" + time[1] + "时" + time[2] + "分" + time[3] + "秒";              
+
+                            
+
+                        }
+                    },false);
+
+                </script>
+    </body>
+</html>
